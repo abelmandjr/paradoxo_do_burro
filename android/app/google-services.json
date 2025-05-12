@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "959187066468",
+    "project_id": "paradoxo-do-burro-c1ada",
+    "storage_bucket": "paradoxo-do-burro-c1ada.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959187066468:android:81b42cef109e06ee84c971",
+        "android_client_info": {
+          "package_name": "com.example.paradoxo_do_burro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4HsJ-7QE664ffHJy19s5-Fud61wyFAk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
