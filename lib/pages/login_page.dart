@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
+import 'register_page.dart';
+import 'forgot_password_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,61 +13,68 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final senhaController = TextEditingController();
-  String erro = '';
+  String mensagem = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login Firebase')),
+      appBar: AppBar(title: const Text('Login')),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             TextField(
               controller: emailController,
               decoration: const InputDecoration(labelText: 'Email'),
             ),
+            const SizedBox(height: 16),
             TextField(
               controller: senhaController,
-              obscureText: true,
               decoration: const InputDecoration(labelText: 'Senha'),
+              obscureText: true,
             ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
-                final result = await AuthService.loginWithEmail(
+                final result = await AuthService.signInWithEmail(
                   emailController.text,
                   senhaController.text,
                 );
-                if (result != null) setState(() => erro = result);
+                setState(() {
+                  mensagem = result ?? 'Login realizado com sucesso!';
+                });
               },
-              child: const Text('Entrar com Email'),
+              child: const Text('Entrar'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final result = await AuthService.signInWithGoogle();
+                setState(() {
+                  mensagem = result ?? 'Login com Google realizado!';
+                });
+              },
+              child: const Text('Entrar com Google'),
             ),
             TextButton(
-              onPressed: () async {
-                final result = await AuthService.registerWithEmail(
-                  emailController.text,
-                  senhaController.text,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const RegisterPage()),
                 );
-                if (result != null) setState(() => erro = result);
               },
-              child: const Text('Registrar'),
+              child: const Text('Não tem conta? Cadastre-se'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ForgotPasswordPage()),
+                );
+              },
+              child: const Text('Esqueceu a senha?'),
             ),
             const SizedBox(height: 16),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.g_mobiledata),
-              onPressed: () async {
-                final result = await AuthService.loginWithGoogle();
-                if (result != null) setState(() => erro = result);
-              },
-              label: const Text('Entrar com Google'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent,
-              ),
-            ),
-            const SizedBox(height: 16),
-            if (erro.isNotEmpty)
-              Text(erro, style: const TextStyle(color: Colors.red)),
+            if (mensagem.isNotEmpty) Text(mensagem),
           ],
         ),
       ),

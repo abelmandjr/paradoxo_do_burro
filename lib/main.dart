@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'pages/auth_gate.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,9 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Autenticação Firebase',
+      title: 'App Autenticação',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const AuthGate(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
