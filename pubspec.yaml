@@ -37,6 +37,15 @@ dependencies:
   firebase_core: ^3.13.0
   firebase_auth: ^5.5.3
   google_sign_in: ^6.2.1
+  cloud_firestore: ^5.6.7
+  fl_chart: ^0.65.0
+  uuid: ^3.0.7
+  intl: ^0.18.0
+  csv: ^6.0.0
+  share_plus: ^7.0.0
+  pdf: ^3.10.0
+  flutter_tags: ^1.0.0-nullsafety.1
+
 
 dev_dependencies:
   flutter_test:
